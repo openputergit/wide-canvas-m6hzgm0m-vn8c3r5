@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siya Jewels - Golden Harvest Scheme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="text-2xl font-bold playfair text-yellow-600">Siya Jewels</a>
+                <div class="relative group">
+                    <button class="flex items-center space-x-2 text-gray-700 hover:text-yellow-600">
+                        <i class="bi bi-person-circle text-xl"></i>
+                        <span>Sign In</span>
+                    </button>
+                    <div class="absolute right-0 w-48 py-2 mt-2 bg-white rounded-md shadow-xl hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50">Sign In</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50">Open Account</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50">Instant Pay</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50">Auto Debit</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50">Information</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50">T & C</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50">FAQs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold playfair text-white mb-6">Golden Harvest Scheme</h1>
+            <p class="text-xl text-white mb-8">Make it a future to look forward to.</p>
+            <button onclick="openModal('signupModal')" class="bg-white text-yellow-600 px-8 py-3 rounded-full font-semibold hover:bg-yellow-50 transition">
+                Start Saving Today
+            </button>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold playfair text-center mb-12">Why Choose Siya Jewels Golden Harvest?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-lg shadow-lg">
+                    <i class="bi bi-gift text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">A Plan for Your Dreams</h3>
+                    <p>Pay for 11 months, get 12th month free</p>
+                </div>
+                <div class="text-center p-6 rounded-lg shadow-lg">
+                    <i class="bi bi-wallet2 text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Flexible Payments</h3>
+                    <p>Start with just ₹2,000 per month</p>
+                </div>
+                <div class="text-center p-6 rounded-lg shadow-lg">
+                    <i class="bi bi-percent text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Special Bonus</h3>
+                    <p>Get 100% bonus on first installment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold playfair text-center mb-12">Calculate Your Benefits</h2>
+            <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Monthly Investment (₹)</label>
+                    <input type="number" id="monthlyAmount" min="2000" step="2000" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter amount (min ₹2,000)">
+                </div>
+                <div class="mb-6">
+                    <p class="text-gray-700">Total Investment (11 months): <span id="totalInvestment">₹0</span></p>
+                    <p class="text-gray-700">Maturity Amount (13th month): <span id="maturityAmount">₹0</span></p>
+                </div>
+                <button onclick="calculate()" class="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 transition">Calculate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg max-w-md w-full">
+            <h3 class="text-2xl font-bold mb-4">Open Account</h3>
+            <form id="signupForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Mobile Number (Aadhaar linked)</label>
+                    <input type="tel" class="w-full px-4 py-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" class="w-full px-4 py-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Full Name</label>
+                    <input type="text" class="w-full px-4 py-2 border rounded-lg" required>
+                </div>
+                <button type="submit" class="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 transition">Create Account</button>
+                <button type="button" onclick="closeModal('signupModal')" class="w-full bg-gray-200 text-gray-700 py-3 rounded-lg hover:bg-gray-300 transition">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const monthlyAmount = parseFloat(document.getElementById('monthlyAmount').value) || 0;
+            const totalInvestment = monthlyAmount * 11;
+            const maturityAmount = totalInvestment + monthlyAmount; // 12th month free
+            
+            document.getElementById('totalInvestment').textContent = `₹${totalInvestment.toLocaleString()}`;
+            document.getElementById('maturityAmount').textContent = `₹${maturityAmount.toLocaleString()}`;
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Account creation request submitted! We will contact you shortly.');
+            closeModal('signupModal');
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
